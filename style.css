@@ -1,0 +1,72 @@
+.main {
+    width: 100%;
+    background-image: url(img/background.png);
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name-of-game {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.score-panel {
+    display: flex;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.stars {
+    margin-right: 10px;
+}
+
+.moves {
+    margin-right: 5px;
+}
+
+.restart {
+    margin-left: 20%;
+}
+
+.deck {
+    width: 500px;
+    background: linear-gradient(150deg, #02ccba 0%, #aa7ecd 100%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #2e3d49;
+    margin: 2%;
+    align-items: center;
+    font-size: 0px;
+}
+
+.match {
+    background-color: #02ccba;
+    font-size: 150%;
+    color: #ffffff;
+}
+
+.open {
+    background: #02b3e4;
+    color: #ffffff;
+    font-size: 150%;
+}
+.show{
+    transform: rotateY(0);
+}
