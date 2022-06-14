@@ -1,5 +1,6 @@
 let picArr = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', "fa fa-bomb", 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', "fa fa-bomb", 'fa-leaf', 'fa-bicycle'];
 const cardList = document.getElementsByClassName('card');
+let pictureList=document.getElementsByTagName('i');
 const r = document.querySelector('.fa-repeat');
 let m = document.querySelector('.moves');
 let deck = document.querySelector('.deck');
@@ -17,6 +18,7 @@ function gameFunc() {
         card.addEventListener('click', classesFunc)
     }
 }
+
 /*2nd function shuffle all the cards */
 function newGame() {
     let newCards = shuffle(picArr).map(function (name) {
@@ -28,31 +30,45 @@ function newGame() {
 }
 /*3rd function  adds classes 'open' and'show' to open cards. if two open cards have the same class then adds class 'match'*/
 function classesFunc(event) {
-    countMoves();
+    // object user clicked on (li or i):
     let openEl = event.target;
+
+    if (openEl.tagName === 'I') {
+        openEl = openEl.parentElement;
+    }
+
+    if (openEl.classList.contains('open') && openEl.classList.contains('show') || openEl.classList.contains('match')) {
+        console.log('double tap');
+        return;
+    }
+
+    countMoves();
     openEl.classList.add('open', 'show');
-    if (openEl.classList.contains('open') && openEl.classList.contains('show')) {
-        newArr.push(openEl);
-        if (newArr.length === 2) {
-            if (newArr[0].querySelector('i').className !== newArr[1].querySelector('i').className) {
-                console.log('no');
-                setTimeout(function removeFunc() {
-                    newArr[0].classList.remove('show', 'open');
-                    newArr[1].classList.remove('show', 'open');
-                    newArr = [];
-                }, 500
-                );
-            }
-            else {
-                console.log('yep');
-                newArr[0].classList.remove('open', 'show');
-                newArr[0].classList.add('match');
-                newArr[1].classList.remove('open', 'show');
-                newArr[1].classList.add('match');
-                newArr = [];
-            }
+    newArr.push(openEl);
+
+    if (newArr.length > 1) {
+        let first=newArr.pop(); 
+        let second=newArr.pop(); 
+
+        let first_i = first.getElementsByTagName('i')[0];
+        let second_i = second.getElementsByTagName('i')[0];
+
+        if (first_i.className !== second_i.className) {
+            console.log('no');
+            setTimeout(() => {
+                first.classList.remove('show', 'open');
+                second.classList.remove('show', 'open');
+            }, 500);
+        }
+        else {
+            console.log('yep');
+            first.classList.remove('open','show');
+            first.classList.add('match');
+            second.classList.remove('open','show');
+            second.classList.add('match');
         }
     }
+    
     finishGameFunc();
 }
 /* 4rth function is counting moves in Game*/
