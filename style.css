@@ -60,6 +60,7 @@
     background-color: #02ccba;
     font-size: 150%;
     color: #ffffff;
+    pointer-events:none;
 }
 
 .open {
@@ -68,5 +69,5 @@
     font-size: 150%;
 }
 .show{
-    transform: rotateY(0);
+    pointer-events:none;
 }
